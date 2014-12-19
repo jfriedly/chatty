@@ -1,3 +1,29 @@
-task wrapper(type: Wrapper) {
-    gradleVersion = '2.0'
+apply plugin: 'java'
+apply plugin: 'application'
+apply plugin: 'build-announcements'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+
+    def slf4jVersion = "1.7.7"
+    compile "org.slf4j:slf4j-api:$slf4jVersion"
+    compile 'org.springframework:spring-context:4.1.3.RELEASE'
+    compile 'io.netty:netty-all:4.0.24.Final'
+    compile 'com.google.code.findbugs:jsr305:2.0.2'
+
+    runtime "org.slf4j:slf4j-simple:$slf4jVersion"
+}
+
+mainClassName = 'com.jfriedly.chatty.time.TimeServer'
+
+wrapper {
+    gradleVersion = '2.2.1'
+}
+
+task hello << {
+    println "Hello world!"
+    println "version is $version"
 }
